@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>City</title>
+    <style>
+    table, th, td, tr{
+    border: 1px solid black;
+    }
+
+    th, td, tr {
+    padding: 10px;
+    }
+    </style>
+</head>
+<body>
+<h1 align="center">All cities over the world</h1>
+<table align="center">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>CountryCode</th>
+        <th>District</th>
+        <th>Population</th>
+    </tr>
+    <tr th:each="city:${cityList}">
+        <td th:text="${city.id}"></td>
+        <td th:text="${city.name}"></td>
+        <td th:text="${city.countryCode}"></td>
+        <td th:text="${city.district}"></td>
+        <td th:text="${city.population}"></td>
+
+    </tr>
+
+</table>
+</body>
+</html>

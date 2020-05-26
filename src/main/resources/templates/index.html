@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1 align="center">Spring Boot jdbc connecting to amazon rds</h1>
+
+<div align="center">
+<form action="/User/all" method="get">
+    <button type="submit">Show Users</button>
+</form>
+
+<br>
+
+<form action="/User/id">
+    <input type="text" name="userId">
+    <button type="submit">Find User by ID</button>
+</form>
+
+<br>
+
+
+<h3>Add a new user</h3>
+<form action="/User/addUser" method="post">
+    <table>
+        <tr><td>First Name:</td>   <td><input type="text" name="first_name" placeholder="First Name"></td></tr>
+        <tr><td>Last Name:</td>    <td><input type="text" name="last_name" placeholder="Last Name"></td></tr>
+        <tr><td>Gender:</td>    <td><input type="text" name="gender" placeholder="Gender"></td></tr>
+        <tr><td>Date Of Birth:</td> <td><input type="text" name="year" placeholder="YY" size="2">/<input type="text" name="month" placeholder="MM" size="1">/<input type="text" name="day" placeholder="DD" size="1"></td></tr>
+        <tr><td>Email:</td>        <td><input type="text" name="email" placeholder="Email"></td></tr>
+    </table>
+    <button type="submit">Submit</button>
+</form>
+
+<br>
+<br>
+<br>
+
+<!-- remove user by id-->
+<form action="/User/removeUser" method="post">
+    <input type="text" name="userId">
+    <button type="submit">Remove User by ID</button>
+</form>
+
+<!--<form action="/City/all" method="get">-->
+<!--    <button type="submit">Show City</button>-->
+<!--</form>-->
+
+<!--<br>-->
+
+<!--<form action="/City/id">-->
+<!--    <input type="text" name="cityId">-->
+<!--    <button type="submit">Find city by ID</button>-->
+<!--</form>-->
+</div>
+</body>
+</html>
