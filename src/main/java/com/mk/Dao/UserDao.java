@@ -68,7 +68,7 @@ public class UserDao {
     }
 
     public String removeUser(String id){
-        String sql = "DELETE FROM users WHERE id=?";
+        String sql = "DELETE FROM users WHERE id = ?";
         jdbcTemplate.update(sql,java.util.UUID.fromString(id));
         return "User "+id+" removed";
     }

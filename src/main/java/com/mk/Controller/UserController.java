@@ -24,6 +24,11 @@ public class UserController {
         map.addAttribute("users",userList);
         return "user";
     }
+    @RequestMapping("/findUser")
+    public String findUser(){
+        return "findUser.html";
+    }
+
 
     @RequestMapping("/id")
     public Object getUserById(@RequestParam("userId") String id, ModelMap map){
@@ -41,6 +46,10 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/register")
+    public String register(){
+        return "addUser";
+    }
     @RequestMapping("/addUser")
     public String addUser(@RequestParam("first_name") String fname,
                           @RequestParam("last_name") String lname,
@@ -61,9 +70,15 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/remove")
+    public String remove(){
+        return "removeUser";
+    }
+
     @RequestMapping("/removeUser")
     public String removeUser(@RequestParam("userId") String id, Model map){
         id = id.trim();
+        if (id.equals("")) return "index";
         try{
             userService.removeUser(id);
             return "success";

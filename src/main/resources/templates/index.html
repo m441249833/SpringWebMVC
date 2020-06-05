@@ -1,48 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Home</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-<h1 align="center">Spring Boot jdbc connecting to amazon rds</h1>
 
-<div align="center">
-<form action="/User/all" method="get">
-    <button type="submit">Show Users</button>
-</form>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-<br>
+<div class="text-center"><h3 class="text-info"><div class="p-3 mb-2 bg-info text-white">User Info</div></h3></div>
 
-<form action="/User/id">
-    <input type="text" name="userId">
-    <button type="submit">Find User by ID</button>
-</form>
+<div class="container" align="center">
+    <br>
+    <div>
+        <form action="/User/all" method="get">
+            <button type="submit" class="btn btn-info m-2">Show Users</button>
+        </form>
+    </div>
 
-<br>
+    <br>
+    <div>
+        <form action="/User/register" method="get">
+            <button type="submit" class="btn btn-info m-2">User register</button>
+        </form>
+
+    </div>
+
+    <br>
+    <div>
+        <form action="/User/findUser" method="get">
+            <button type="submit" class="btn btn-info m-2">Find User by ID</button>
+        </form>
+    </div>
 
 
-<h3>Add a new user</h3>
-<form action="/User/addUser" method="post">
-    <table>
-        <tr><td>First Name:</td>   <td><input type="text" name="first_name" placeholder="First Name"></td></tr>
-        <tr><td>Last Name:</td>    <td><input type="text" name="last_name" placeholder="Last Name"></td></tr>
-        <tr><td>Gender:</td>    <td><input type="text" name="gender" placeholder="Gender"></td></tr>
-        <tr><td>Date Of Birth:</td> <td><input type="text" name="year" placeholder="YY" size="2">/<input type="text" name="month" placeholder="MM" size="1">/<input type="text" name="day" placeholder="DD" size="1"></td></tr>
-        <tr><td>Email:</td>        <td><input type="text" name="email" placeholder="Email"></td></tr>
-    </table>
-    <button type="submit">Submit</button>
-</form>
 
-<br>
-<br>
-<br>
 
-<!-- remove user by id-->
-<form action="/User/removeUser" method="post">
-    <input type="text" name="userId">
-    <button type="submit">Remove User by ID</button>
-</form>
+
+    <br>
+    <!-- remove user by id-->
+    <div>
+        <form action="/User/remove" method="post">
+            <button type="submit" class="btn btn-info m-2">Remove User by ID</button>
+        </form>
+    </div>
+
 
 <!--<form action="/City/all" method="get">-->
 <!--    <button type="submit">Show City</button>-->
