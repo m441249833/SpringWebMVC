@@ -13,19 +13,36 @@
 </head>
 <body>
 
-<div class="text-center"><h3 class="p-3 mb-2 bg-success text-white">User Register</h3></div>
+<div class="text-center"><h3 class="p-3 mb-2 bg-success text-white">Register</h3></div>
 <div align="center">
+    <div>
+     <small>
+        <p class="error" th:text="${first_name_error}"></p>
+        <p class="error" th:text="${last_name_error}"></p>
+        <p class="error" th:text="${gender_error}"></p>
+        <p class="error" th:text="${dob_error}"></p>
+        <p class="error" th:text="${email_error}"></p>
+     </small>
+    </div>
     <form action="/User/addUser" method="post">
         <table>
-            <tr><td>First Name:</td>   <td><input type="text" name="first_name" placeholder="First Name"></td></tr>
-            <tr><td>Last Name:</td>    <td><input type="text" name="last_name" placeholder="Last Name"></td></tr>
-            <tr><td>Gender:</td>    <td><input type="text" name="gender" placeholder="Gender"></td></tr>
-            <tr><td>Date Of Birth:</td> <td><input type="text" name="year" placeholder="YY" size="2">/<input type="text" name="month" placeholder="MM" size="1">/<input type="text" name="day" placeholder="DD" size="1"></td></tr>
-            <tr><td>Email:</td>        <td><input type="text" name="email" placeholder="Email"></td></tr>
+            <tr><td>First Name:</td>   <td><input type="text" name="first_name" placeholder="First Name" class="input-group"></td></tr>
+            <tr><td>Last Name:</td>    <td><input type="text" name="last_name" placeholder="Last Name" class="input-group"></td></tr>
+            <tr><td>Gender:</td>    <td><input type="radio" id="male" name="gender" value="Male">
+                                        <label for="male">Male   </label>
+                                        <input type="radio" id="female" name="gender" value="Female" style="margin-left:10px">
+                                        <label for="female">Female</label>
+                                    </td></tr>
+            <tr><td>Date of birth:</td> <td><input type="date" name="date_of_birth" class="input-group"></td></tr>
+            <tr><td>Email:</td> <td><input type="text" name="email" placeholder="Email" class="input-group"></td></tr>
         </table>
             <button type="submit" class="btn btn-success m-2" >Add</button>
-            <button type="button" onclick="goBack()" class="btn btn-secondary m-2" >Back</button>
+            <a href="/"><button type="button" class="btn btn-secondary m-2" >Back</button></a>
     </form>
 </div>
+
+
+
+
 </body>
 </html>

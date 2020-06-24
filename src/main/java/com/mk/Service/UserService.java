@@ -5,6 +5,7 @@ import com.mk.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -25,7 +26,7 @@ public class UserService {
     public String addUser(User user){
         return userDao.addUser(user);
     }
-    public String removeUser(String id){
+    public String removeUser(String id) throws SQLException {
         return this.userDao.removeUser(id);
     }
 

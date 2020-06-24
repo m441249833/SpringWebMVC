@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Employee/fragments::head"></head>
+
+<body>
+<nav th:replace="Employee/fragments::navigation"></nav>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="department:${departments}">
+        <td th:text="${department.id}"></td>
+        <td th:text="${department.name}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

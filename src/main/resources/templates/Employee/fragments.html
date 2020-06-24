@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Employee</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/bg.css}" rel="stylesheet">
+</head>
+<body>
+
+<nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/employee/all">All Members</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/employee/create">Create Employee</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/employee/department">Department</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Position</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <form class="form-inline my-2 my-lg-0" action="/employee/id">
+                <input class="form-control mr-sm-2" type="search" placeholder="Employee ID" name="employeeId">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

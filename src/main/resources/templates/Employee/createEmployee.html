@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Employee/fragments::head"></head>
+
+<body>
+
+<nav th:replace="Employee/fragments::navigation"></nav>
+
+<div align="center">
+    <br>
+    <h3>Register Employee</h3>
+    <br>
+    <form method="post" action="/employee/saveEmployee">
+        <div class="form-group">
+            <label>First Name
+                <input type="text" class="form-control" name="first_name">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Last Name
+                <input type="text" class="form-control" name="last_name">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Email
+                <input type="text" class="form-control" name="email">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Department<br>
+                <select name="department">
+                    <option>(Select A Department)</option>
+                    <option th:each="department:${departments}" th:text="${department.name}">
+                    </option>
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Position
+                <input type="text" class="form-control" name="position">
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary m-3">Submit</button>
+    </form>
+
+</div>
+<p th:text="${successMsg}" class="success"></p>
+<p th:text="${errorMsg}" class="error"></p>
+</body>
+</html>

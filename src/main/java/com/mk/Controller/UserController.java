@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -18,75 +20,82 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/all")
+    @GetMapping("/all")
     public String getAllUser(ModelMap map){
         List<User> userList = (List<User>) userService.getAllUser();
         map.addAttribute("users",userList);
         return "user";
     }
-    @RequestMapping("/findUser")
+
+    @GetMapping("/findUser")
     public String findUser(){
-        return "findUser.html";
+        return "findUser";
     }
 
-
-    @RequestMapping("/id")
-    public Object getUserById(@RequestParam("userId") String id, ModelMap map){
+    @GetMapping("/id")
+    public String getUserById(@RequestParam("userId") String id, Model model){
         id = id.trim();
         if (id.equals("")) return "index";
         try{
             List<User> userList = (List<User>) userService.getUserById(id);
-            if (userList.isEmpty()) return "errorId";
+            if (userList.isEmpty()) {
+                model.addAttribute("errorMsg","Can not find the user with given id ->"+id);
+                return "error";
+            }
             else {
-                map.addAttribute("users",userList);
+                model.addAttribute("users",userList);
                 return "user";
             }
         }catch (Exception e){
+            model.addAttribute("errorMsg","Failed to retrieve user");
             return "error";
         }
     }
 
-    @RequestMapping("/register")
+    @GetMapping("/register")
     public String register(){
         return "addUser";
     }
-    @RequestMapping("/addUser")
-    public String addUser(@RequestParam("first_name") String fname,
-                          @RequestParam("last_name") String lname,
-                          @RequestParam("gender") String gender,
-                          @RequestParam("year") String year,
-                          @RequestParam("month") String month,
-                          @RequestParam("day") String day,
-                          @RequestParam("email") String email,
-                          Model model){
-        String dob = year+"-"+month+"-"+day;
-        User user = new User(fname,lname,gender,dob,email);
+
+    @PostMapping("/addUser")
+    public String addUser(@ModelAttribute @Valid User user, Errors errors, Model model){
+
+        if (errors.hasErrors()){
+            if(errors.hasFieldErrors("first_name")) model.addAttribute("first_name_error",errors.getFieldError("first_name").getDefaultMessage());
+            if(errors.hasFieldErrors("last_name")) model.addAttribute("last_name_error",errors.getFieldError("last_name").getDefaultMessage());
+            if(errors.hasFieldErrors("gender")) model.addAttribute("gender_error",errors.getFieldError("gender").getDefaultMessage());
+            if(errors.hasFieldErrors("date_of_birth")) model.addAttribute("dob_error",errors.getFieldError("date_of_birth").getDefaultMessage());
+            if(errors.hasFieldErrors("email")) model.addAttribute("email_error",errors.getFieldError("email").getDefaultMessage());
+            return "addUser";
+        }
         System.out.println(user.toString());
         try{
-            userService.addUser(user);
+            String msg = userService.addUser(user);
+            model.addAttribute("successMsg",msg);
             return "success";
         }catch (Exception e){
+            model.addAttribute("errorMsg","User registration failed.");
+
             return "error";
         }
     }
 
-    @RequestMapping("/remove")
+    @GetMapping("/remove")
     public String remove(){
         return "removeUser";
     }
 
-    @RequestMapping("/removeUser")
-    public String removeUser(@RequestParam("userId") String id, Model map){
+    @PostMapping("/removeUser")
+    public String removeUser(@RequestParam("userId") String id, Model model){
         id = id.trim();
         if (id.equals("")) return "index";
         try{
-            userService.removeUser(id);
+            String msg = userService.removeUser(id);
+            model.addAttribute("successMsg",msg);
             return "success";
         }catch (Exception e){
+            model.addAttribute("errorMsg","User "+id+" doesn't exist.");
             return "error";
         }
     }
-
-
-
 }

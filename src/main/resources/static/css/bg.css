@@ -5,6 +5,10 @@ body{
   background-size: 100% 100%;
 }
 
-b{
-    color:white
+.input-group{
+    width: 200px;
+}
+
+.error{
+    color: red;
 }

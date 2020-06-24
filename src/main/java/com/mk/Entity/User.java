@@ -1,21 +1,36 @@
 package com.mk.Entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import java.util.Date;
 import java.util.UUID;
 
 public class User {
 
     private String id;
+
+    @NotBlank(message = "First name can not be empty.")
     private String first_name;
+    @NotBlank(message = "Last name can not be empty.")
     private String last_name;
+    @NotBlank(message = "Please select a gender")
     private String gender;
-    private String date_of_birth;
+    @NotNull(message = "Please enter your date of birth")
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private Date date_of_birth;
+    @Email(message = "Invalid email.")
     private String email;
 
     public User() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public User(String first_name, String last_name, String gender, String date_of_birth, String email) {
+    public User(String first_name, String last_name, String gender, Date date_of_birth, String email) {
         this.id = UUID.randomUUID().toString();
         this.first_name = first_name;
         this.last_name = last_name;
@@ -40,7 +55,7 @@ public class User {
         return gender;
     }
 
-    public String getDate_of_birth() {
+    public Date getDate_of_birth() {
         return date_of_birth;
     }
 
@@ -64,7 +79,7 @@ public class User {
         this.gender = gender;
     }
 
-    public void setDate_of_birth(String date_of_birth) {
+    public void setDate_of_birth(Date date_of_birth) {
         this.date_of_birth = date_of_birth;
     }
 
@@ -79,7 +94,7 @@ public class User {
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
                 ", gender='" + gender + '\'' +
-                ", date_of_birth=" + date_of_birth +
+                ", date_of_birth=" + date_of_birth.toString() +
                 ", email='" + email + '\'' +
                 '}';
     }
