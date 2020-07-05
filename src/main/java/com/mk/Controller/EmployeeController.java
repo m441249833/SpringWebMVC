@@ -52,7 +52,7 @@ public class EmployeeController{
             model.addAttribute("errorMsg","Employee Not Found.");
             return "Employee/searchError";
         }else {
-            model.addAttribute("employees",employeeRepository.findById(employeeId1));
+            model.addAttribute("employee",result.get());
         }
         return "Employee/employee";
     }

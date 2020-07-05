@@ -28,9 +28,11 @@
         </div>
         <div class="form-group">
             <label>Department<br>
-                <select name="department">
-                    <option>(Select A Department)</option>
-                    <option th:each="department:${departments}" th:text="${department.name}">
+                <select name="department" style="width: 200px; height:40px;">
+<!--                    <option style="display:none;">(Select Department)</option>-->
+                    <option th:each="department:${departments}"
+                            th:value="${department.id}"
+                            th:text="${department.name}">
                     </option>
                 </select>
             </label>

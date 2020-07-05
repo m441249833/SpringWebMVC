@@ -10,7 +10,7 @@ public class Employee {
     @GeneratedValue
     private long id;
     @Column(name="first_name")
-    private String firtst_name;
+    private String first_name;
     @Column(name="last_name")
     private String last_name;
     @Column(name="email")
@@ -21,11 +21,16 @@ public class Employee {
     @ManyToOne
     private Department department;
 
-    public Employee(String firtst_name, String last_name, String email, String position) {
-        this.firtst_name = firtst_name;
+    public Employee(String first_name, String last_name, String email, String position, Department department) {
+        this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.position = position;
+        this.department = department;
+    }
+
+    public Employee(){
+
     }
 
     public long getId() {
@@ -36,12 +41,12 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFirtst_name() {
-        return firtst_name;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFirtst_name(String firtst_name) {
-        this.firtst_name = firtst_name;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
     public String getLast_name() {
@@ -66,5 +71,13 @@ public class Employee {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

@@ -23,9 +23,19 @@
         <td th:text="${employee.first_name}"></td>
         <td th:text="${employee.last_name}"></td>
         <td th:text="${employee.email}"></td>
-        <td th:text="${employee.department}"></td>
+        <td th:text="${employee.department.name}"></td>
         <td th:text="${employee.position}"></td>
     </tr>
+
+    <tr>
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.first_name}"></td>
+        <td th:text="${employee.last_name}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.department.name}"></td>
+        <td th:text="${employee.position}"></td>
+    </tr>
+
     </tbody>
 </table>
 
