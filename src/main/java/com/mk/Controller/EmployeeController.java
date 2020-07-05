@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -30,7 +32,6 @@ public class EmployeeController{
     @GetMapping("/all")
     public String getAllEmployee(Model model){
         model.addAttribute("employees",employeeRepository.findAll());
-        model.addAttribute("title","All Member");
         return "Employee/employee";
     }
 
@@ -52,7 +53,9 @@ public class EmployeeController{
             model.addAttribute("errorMsg","Employee Not Found.");
             return "Employee/searchError";
         }else {
-            model.addAttribute("employee",result.get());
+            List<Employee> l = new ArrayList<>();
+            l.add(result.get());
+            model.addAttribute("employees",l);
         }
         return "Employee/employee";
     }
